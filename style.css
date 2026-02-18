@@ -9,38 +9,27 @@
 }
 
 :root {
-    --racc-green-dark: #003218;  /* Ton fond personnalisé */
-    --racc-green-official: #008440; /* Vert officiel */
-    --racc-dark: #0B1215;
-    --racc-white: #F4FFF9;       /* Blanc cassé */
-    --racc-red: #E60000;         /* Rouge officiel */
+    --racc-green-dark: #003218;    /* Fond personnalisé */
+    --racc-green-official: #008440; /* Vert officiel logo */
+    --racc-dark: #0B1215;          /* Couleur carte */
+    --racc-white: #F4FFF9;         /* Blanc cassé charte */
+    --racc-red: #E60000;           /* Rouge état actif */
     
-    /* Filtres pour les icônes */
+    /* Filtres pour les icônes (conversion HEX vers Filter) */
     --filter-green: invert(33%) sepia(87%) saturate(1469%) hue-rotate(124deg) brightness(92%) contrast(102%);
     --filter-white: brightness(0) invert(1);
     --filter-red: invert(13%) sepia(94%) saturate(7473%) hue-rotate(359deg) brightness(94%) contrast(116%);
 }
 
+/* BASE & FOND RESPONSIVE */
 body {
-    /* Ta couleur de fond personnalisée */
     background-color: var(--racc-green-dark); 
-    
-    /* Ton fichier SVG */
     background-image: url('img/fond.svg'); 
-    
-    /* Empêche la répétition (duplication) */
     background-repeat: no-repeat; 
-    
-    /* Garde le fond fixe même si on scroll */
     background-attachment: fixed; 
-    
-    /* Centre le fond */
     background-position: center; 
-    
-    /* Force l'image à prendre toute la hauteur sans changer de taille */
     background-size: cover; 
     
-    /* --- Reste du style --- */
     font-family: 'AvantGarde', sans-serif;
     margin: 0;
     display: flex;
@@ -48,31 +37,35 @@ body {
     align-items: center;
     min-height: 100vh;
     padding: 20px;
+    box-sizing: border-box;
 }
 
+/* CARTE PRINCIPALE */
 .card-container {
     background-color: var(--racc-dark);
     width: 100%;
-    max-width: 450px;
+    max-width: 450px; /* Largeur max sur PC */
     border-radius: 20px;
-    padding: 40px 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    padding: 30px 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     text-align: center;
     color: var(--racc-white);
+    box-sizing: border-box;
 }
 
-/* HEADER SECTION */
+/* HEADER & LOGO RESPONSIVE */
 .avatar img {
-    width: 200px;
-    height: 200px;
+    width: 150px; /* Taille mobile par défaut */
+    height: 150px;
     border-radius: 15px;
     object-fit: cover;
     margin-bottom: 20px;
+    transition: width 0.3s ease, height 0.3s ease;
 }
 
 .name {
     font-family: 'AboveBold', sans-serif;
-    font-size: 24px;
+    font-size: 22px;
     margin: 0 0 10px 0;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -84,7 +77,7 @@ body {
     margin: 5px 0;
 }
 
-/* SOCIAL ICONS */
+/* RÉSEAUX SOCIAUX */
 .social-grid {
     display: flex;
     justify-content: center;
@@ -103,7 +96,7 @@ body {
     filter: var(--filter-white);
 }
 
-/* LINKS SECTION */
+/* SECTION DES LIENS */
 .links-stack {
     display: flex;
     flex-direction: column;
@@ -119,27 +112,20 @@ body {
     padding: 10px 15px;
     text-decoration: none;
     color: var(--racc-white);
-    transition: all 0.3s ease;
+    transition: background 0.3s ease;
+    overflow: hidden; /* Sécurité pour la troncation */
 }
 
-/* HOVER : Fond légèrement plus clair et icône blanche */
 .link-item:hover {
     background: rgba(255, 255, 255, 0.15);
-}
-
-.link-item:hover .picto-box img {
-    filter: var(--filter-white);
-}
-
-/* ACTIVE : Quand on clique, l'icône devient rouge */
-.link-item:active .picto-box img {
-    filter: var(--filter-red);
 }
 
 .link-content {
     display: flex;
     align-items: center;
     gap: 15px;
+    min-width: 0; /* Important pour que la troncation fonctionne dans un flex */
+    flex: 1;
 }
 
 .picto-box {
@@ -150,23 +136,73 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background-color 0.3s ease;
+    flex-shrink: 0; /* Empêche le carré de s'écraser */
 }
 
 .picto-box img {
     width: 20px;
     height: 20px;
-    filter: var(--filter-white); /* Par défaut blanc sur le carré vert */
-    transition: filter 0.3s ease;
+    filter: var(--filter-white);
+    transition: filter 0.2s ease;
 }
 
+/* États des icônes au survol/clic */
+.link-item:hover .picto-box img {
+    filter: var(--filter-white);
+}
+
+.link-item:active .picto-box img {
+    filter: var(--filter-red);
+}
+
+/* TRONCATION DU TEXTE */
 .link-title {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 13px;
     letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    width: 100%; /* Occupe l'espace restant */
 }
 
 .arrow {
-    font-size: 20px;
+    font-size: 18px;
     opacity: 0.5;
+    margin-left: 10px;
+    flex-shrink: 0;
+}
+
+/* MEDIA QUERIES (ADAPTATION ÉCRANS) */
+
+/* Tablettes et PC */
+@media (min-width: 768px) {
+    .card-container {
+        padding: 40px;
+    }
+    .avatar img {
+        width: 200px;
+        height: 200px;
+    }
+    .name {
+        font-size: 26px;
+    }
+    .link-title {
+        font-size: 14px;
+    }
+}
+
+/* Smartphones très étroits */
+@media (max-width: 360px) {
+    .card-container {
+        padding: 20px 15px;
+    }
+    .link-content {
+        gap: 10px;
+    }
+    .picto-box {
+        width: 35px;
+        height: 35px;
+    }
 }
