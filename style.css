@@ -22,7 +22,25 @@
 }
 
 body {
-    background-image: url('img/fond.svg');
+    /* Ta couleur de fond personnalisée */
+    background-color: var(--racc-green-dark); 
+    
+    /* Ton fichier SVG */
+    background-image: url('img/fond.svg'); 
+    
+    /* Empêche la répétition (duplication) */
+    background-repeat: no-repeat; 
+    
+    /* Garde le fond fixe même si on scroll */
+    background-attachment: fixed; 
+    
+    /* Centre le fond */
+    background-position: center; 
+    
+    /* Force l'image à prendre toute la hauteur sans changer de taille */
+    background-size: cover; 
+    
+    /* --- Reste du style --- */
     font-family: 'AvantGarde', sans-serif;
     margin: 0;
     display: flex;
