@@ -9,19 +9,22 @@
 }
 
 :root {
-    --racc-green-dark: #003218;    /* Fond personnalisé */
-    --racc-green-official: #008440; /* Vert officiel logo */
-    --racc-dark: #0B1215;          /* Couleur carte */
-    --racc-white: #F4FFF9;         /* Blanc cassé charte */
-    --racc-red: #E60000;           /* Rouge état actif */
+    --racc-green-dark: #003218;    
+    --racc-green-official: #008440; 
+    --racc-dark: #0B1215;          
+    --racc-white: #F4FFF9;         
+    --racc-red: #E60000;           
     
-    /* Filtres pour les icônes (conversion HEX vers Filter) */
     --filter-green: invert(33%) sepia(87%) saturate(1469%) hue-rotate(124deg) brightness(92%) contrast(102%);
     --filter-white: brightness(0) invert(1);
     --filter-red: invert(13%) sepia(94%) saturate(7473%) hue-rotate(359deg) brightness(94%) contrast(116%);
 }
 
 /* BASE & FOND RESPONSIVE */
+* {
+    box-sizing: border-box; /* Assure que les paddings ne cassent pas la largeur */
+}
+
 body {
     background-color: var(--racc-green-dark); 
     background-image: url('img/fond.svg'); 
@@ -37,30 +40,30 @@ body {
     align-items: center;
     min-height: 100vh;
     padding: 20px;
-    box-sizing: border-box;
 }
 
 /* CARTE PRINCIPALE */
 .card-container {
     background-color: var(--racc-dark);
     width: 100%;
-    max-width: 450px; /* Largeur max sur PC */
+    max-width: 450px;
     border-radius: 20px;
     padding: 30px 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     text-align: center;
     color: var(--racc-white);
-    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre tout le contenu vertical */
 }
 
-/* HEADER & LOGO RESPONSIVE */
+/* HEADER & LOGO */
 .avatar img {
-    width: 150px; /* Taille mobile par défaut */
+    width: 150px;
     height: 150px;
     border-radius: 15px;
     object-fit: cover;
     margin-bottom: 20px;
-    transition: width 0.3s ease, height 0.3s ease;
 }
 
 .name {
@@ -101,6 +104,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    width: 100%; /* Important pour que les liens prennent toute la largeur */
 }
 
 .link-item {
@@ -113,7 +117,7 @@ body {
     text-decoration: none;
     color: var(--racc-white);
     transition: background 0.3s ease;
-    overflow: hidden; /* Sécurité pour la troncation */
+    min-height: 60px; /* Assure une hauteur constante */
 }
 
 .link-item:hover {
@@ -124,8 +128,9 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
-    min-width: 0; /* Important pour que la troncation fonctionne dans un flex */
-    flex: 1;
+    min-width: 0; /* Déclencheur critique pour la troncation flexbox */
+    flex: 1;      /* Pousse la flèche vers la droite */
+    text-align: left;
 }
 
 .picto-box {
@@ -136,7 +141,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-shrink: 0; /* Empêche le carré de s'écraser */
+    flex-shrink: 0; /* Empêche le décalage sur mobile */
 }
 
 .picto-box img {
@@ -146,16 +151,11 @@ body {
     transition: filter 0.2s ease;
 }
 
-/* États des icônes au survol/clic */
-.link-item:hover .picto-box img {
-    filter: var(--filter-white);
-}
+/* Interaction couleurs */
+.link-item:hover .picto-box img { filter: var(--filter-white); }
+.link-item:active .picto-box img { filter: var(--filter-red); }
 
-.link-item:active .picto-box img {
-    filter: var(--filter-red);
-}
-
-/* TRONCATION DU TEXTE */
+/* TRONCATION ET POSITION TEXTE */
 .link-title {
     font-weight: bold;
     font-size: 13px;
@@ -163,8 +163,8 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-align: left;
-    width: 100%; /* Occupe l'espace restant */
+    display: block;
+    margin: 0; /* Supprime les marges parasites */
 }
 
 .arrow {
@@ -174,35 +174,18 @@ body {
     flex-shrink: 0;
 }
 
-/* MEDIA QUERIES (ADAPTATION ÉCRANS) */
+/* MEDIA QUERIES */
 
-/* Tablettes et PC */
 @media (min-width: 768px) {
-    .card-container {
-        padding: 40px;
-    }
-    .avatar img {
-        width: 200px;
-        height: 200px;
-    }
-    .name {
-        font-size: 26px;
-    }
-    .link-title {
-        font-size: 14px;
-    }
+    .card-container { padding: 40px; }
+    .avatar img { width: 200px; height: 200px; }
+    .name { font-size: 26px; }
+    .link-title { font-size: 14px; }
 }
 
-/* Smartphones très étroits */
 @media (max-width: 360px) {
-    .card-container {
-        padding: 20px 15px;
-    }
-    .link-content {
-        gap: 10px;
-    }
-    .picto-box {
-        width: 35px;
-        height: 35px;
-    }
+    .card-container { padding: 20px 10px; }
+    .link-content { gap: 10px; }
+    .link-title { font-size: 12px; }
+    .picto-box { width: 35px; height: 35px; }
 }
