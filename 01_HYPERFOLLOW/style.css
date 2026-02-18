@@ -1,0 +1,154 @@
+/* IMPORT POLICES */
+@font-face {
+    font-family: 'AboveBold';
+    src: url('Above Bold.otf') format('opentype');
+}
+@font-face {
+    font-family: 'AvantGarde';
+    src: url('ITCAvantGardeStd-Bk.ttf') format('truetype');
+}
+
+:root {
+    --racc-green-dark: #003218;  /* Ton fond personnalisé */
+    --racc-green-official: #008440; /* Vert officiel */
+    --racc-dark: #0B1215;
+    --racc-white: #F4FFF9;       /* Blanc cassé */
+    --racc-red: #E60000;         /* Rouge officiel */
+    
+    /* Filtres pour les icônes */
+    --filter-green: invert(33%) sepia(87%) saturate(1469%) hue-rotate(124deg) brightness(92%) contrast(102%);
+    --filter-white: brightness(0) invert(1);
+    --filter-red: invert(13%) sepia(94%) saturate(7473%) hue-rotate(359deg) brightness(94%) contrast(116%);
+}
+
+body {
+    background-image: url('img/fond.svg');
+    font-family: 'AvantGarde', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.card-container {
+    background-color: var(--racc-dark);
+    width: 100%;
+    max-width: 450px;
+    border-radius: 20px;
+    padding: 40px 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    text-align: center;
+    color: var(--racc-white);
+}
+
+/* HEADER SECTION */
+.avatar img {
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.name {
+    font-family: 'AboveBold', sans-serif;
+    font-size: 24px;
+    margin: 0 0 10px 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.location, .bio {
+    font-size: 14px;
+    opacity: 0.8;
+    margin: 5px 0;
+}
+
+/* SOCIAL ICONS */
+.social-grid {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0 30px 0;
+}
+
+.social-grid img {
+    width: 24px;
+    height: 24px;
+    filter: var(--filter-green);
+    transition: filter 0.3s ease;
+}
+
+.social-grid a:hover img {
+    filter: var(--filter-white);
+}
+
+/* LINKS SECTION */
+.links-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.link-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: var(--racc-white);
+    transition: all 0.3s ease;
+}
+
+/* HOVER : Fond légèrement plus clair et icône blanche */
+.link-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.link-item:hover .picto-box img {
+    filter: var(--filter-white);
+}
+
+/* ACTIVE : Quand on clique, l'icône devient rouge */
+.link-item:active .picto-box img {
+    filter: var(--filter-red);
+}
+
+.link-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.picto-box {
+    width: 40px;
+    height: 40px;
+    background-color: var(--racc-green-official);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.picto-box img {
+    width: 20px;
+    height: 20px;
+    filter: var(--filter-white); /* Par défaut blanc sur le carré vert */
+    transition: filter 0.3s ease;
+}
+
+.link-title {
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.arrow {
+    font-size: 20px;
+    opacity: 0.5;
+}
