@@ -20,7 +20,7 @@
     --filter-red: invert(13%) sepia(94%) saturate(7473%) hue-rotate(359deg) brightness(94%) contrast(116%);
 }
 
-/* BASE & FOND FIXE IMMOBILE */
+/* BASE & STRUCTURE */
 * {
     box-sizing: border-box;
 }
@@ -30,14 +30,15 @@ body {
     font-family: 'AvantGarde', sans-serif;
     margin: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column; /* Aligne carte + footer verticalement */
+    align-items: center;    /* Centre horizontalement */
+    justify-content: flex-start; /* Aligne en haut pour éviter l'espace vide excessif */
     min-height: 100vh;
-    padding: 20px;
+    padding: 40px 20px;     /* Espace en haut et en bas de la page */
     position: relative;
 }
 
-/* Le fond est placé ici pour rester fixe même sur mobile */
+/* FOND FIXE IMMOBILE */
 body::before {
     content: "";
     position: fixed;
@@ -182,6 +183,31 @@ body::before {
     opacity: 0.5;
     margin-left: 10px;
     flex-shrink: 0;
+}
+
+/* FOOTER (Resserré) */
+.footer-credits {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px; /* Espace fixe entre la carte et le texte */
+}
+
+.footer-credits p {
+    font-family: 'AvantGarde', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    color: var(--racc-white);
+    opacity: 0.6;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.link-footer {
+    color: var(--racc-white);
+    text-decoration: none;
+    font-weight: bold;
 }
 
 /* MEDIA QUERIES */
