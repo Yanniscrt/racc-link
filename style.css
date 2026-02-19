@@ -20,19 +20,13 @@
     --filter-red: invert(13%) sepia(94%) saturate(7473%) hue-rotate(359deg) brightness(94%) contrast(116%);
 }
 
-/* BASE & FOND RESPONSIVE */
+/* BASE & FOND FIXE IMMOBILE */
 * {
-    box-sizing: border-box; /* Assure que les paddings ne cassent pas la largeur */
+    box-sizing: border-box;
 }
 
 body {
     background-color: var(--racc-green-dark); 
-    background-image: url('img/fond.svg'); 
-    background-repeat: no-repeat; 
-    background-attachment: fixed; 
-    background-position: center; 
-    background-size: cover; 
-    
     font-family: 'AvantGarde', sans-serif;
     margin: 0;
     display: flex;
@@ -40,6 +34,23 @@ body {
     align-items: center;
     min-height: 100vh;
     padding: 20px;
+    position: relative;
+}
+
+/* Le fond est placé ici pour rester fixe même sur mobile */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: url('img/fond.svg'); 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    background-size: cover;
+    will-change: transform;
 }
 
 /* CARTE PRINCIPALE */
@@ -54,7 +65,7 @@ body {
     color: var(--racc-white);
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centre tout le contenu vertical */
+    align-items: center;
 }
 
 /* HEADER & LOGO */
@@ -104,7 +115,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    width: 100%; /* Important pour que les liens prennent toute la largeur */
+    width: 100%;
 }
 
 .link-item {
@@ -117,7 +128,7 @@ body {
     text-decoration: none;
     color: var(--racc-white);
     transition: background 0.3s ease;
-    min-height: 60px; /* Assure une hauteur constante */
+    min-height: 60px;
 }
 
 .link-item:hover {
@@ -128,8 +139,8 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
-    min-width: 0; /* Déclencheur critique pour la troncation flexbox */
-    flex: 1;      /* Pousse la flèche vers la droite */
+    min-width: 0;
+    flex: 1;
     text-align: left;
 }
 
@@ -141,7 +152,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-shrink: 0; /* Empêche le décalage sur mobile */
+    flex-shrink: 0;
 }
 
 .picto-box img {
@@ -151,7 +162,6 @@ body {
     transition: filter 0.2s ease;
 }
 
-/* Interaction couleurs */
 .link-item:hover .picto-box img { filter: var(--filter-white); }
 .link-item:active .picto-box img { filter: var(--filter-red); }
 
@@ -164,7 +174,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     display: block;
-    margin: 0; /* Supprime les marges parasites */
+    margin: 0;
 }
 
 .arrow {
@@ -175,7 +185,6 @@ body {
 }
 
 /* MEDIA QUERIES */
-
 @media (min-width: 768px) {
     .card-container { padding: 40px; }
     .avatar img { width: 200px; height: 200px; }
