@@ -28,22 +28,10 @@
 body {
     background-color: var(--racc-green-dark); 
     background-image: url('img/fond.svg'); 
-    
-    /* Empêche la répétition */
     background-repeat: no-repeat; 
-    
-    /* Fixe le fond (ne bouge pas au scroll) */
     background-attachment: fixed; 
-    
-    /* Centre parfaitement l'image */
-    background-position: center center; 
-    
-    /* Couvre toute la surface sans déformer */
+    background-position: center; 
     background-size: cover; 
-
-    /* Force la hauteur sur 100% de la fenêtre visible */
-    height: 100vh;
-    width: 100%;
     
     font-family: 'AvantGarde', sans-serif;
     margin: 0;
