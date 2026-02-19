@@ -13,11 +13,12 @@
     --racc-green-official: #008440; 
     --racc-dark: #0B1215;          
     --racc-white: #F4FFF9;         
-    --racc-red: #E60000;           
+    --racc-red: #FE0000;           
     
     --filter-green: invert(33%) sepia(87%) saturate(1469%) hue-rotate(124deg) brightness(92%) contrast(102%);
     --filter-white: brightness(0) invert(1);
     --filter-red: invert(13%) sepia(94%) saturate(7473%) hue-rotate(359deg) brightness(94%) contrast(116%);
+    --filter-red-official: invert(13%) sepia(94%) saturate(7473%) hue-rotate(359deg) brightness(94%) contrast(116%);
 }
 
 /* BASE & STRUCTURE */
@@ -107,8 +108,15 @@ body::before {
     transition: filter 0.3s ease;
 }
 
+/* État survol : devient blanc */
 .social-grid a:hover img {
     filter: var(--filter-white);
+}
+
+/* État clic : devient rouge #FE0000 */
+.social-grid a:active img {
+    filter: var(--filter-red-official);
+    transform: scale(0.95); /* Optionnel : petit effet d'enfoncement au clic */
 }
 
 /* SECTION DES LIENS */
@@ -120,7 +128,7 @@ body::before {
 }
 
 .link-item {
-    background: rgba(255, 255, 255, 0.05);
+    background: #111F24;
     border-radius: 12px;
     display: flex;
     justify-content: space-between;
@@ -133,7 +141,7 @@ body::before {
 }
 
 .link-item:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: #1B2E35;
 }
 
 .link-content {
@@ -190,7 +198,7 @@ body::before {
     width: 100%;
     text-align: center;
     padding: 20px 0;
-    margin-top: 40px; /* Espace fixe entre la carte et le texte */
+    margin-top: 40px; 
 }
 
 .footer-credits p {
@@ -204,10 +212,25 @@ body::before {
     margin: 0;
 }
 
+/* Style des liens dans le footer */
 .link-footer {
     color: var(--racc-white);
-    text-decoration: none;
+    text-decoration: underline; /* Toujours souligné comme demandé */
     font-weight: bold;
+    transition: all 0.2s ease;
+    opacity: 0.8; /* Légèrement transparent de base */
+}
+
+/* État au survol : Plus blanc (opacité totale) */
+.link-footer:hover {
+    opacity: 1;
+    color: #F4FFF9;
+}
+
+/* État au clic : Rouge spécifique #FE0000 */
+.link-footer:active {
+    color: #FE0000;
+    opacity: 1;
 }
 
 /* MEDIA QUERIES */
